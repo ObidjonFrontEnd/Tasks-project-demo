@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task list</title>
+	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+	<link rel="stylesheet" href="main.css">
+	<link rel="stylesheet" href="output.css">
+</head>
+
+<body class="relative ">
+
+	<header class="relative z-[90]">
+
+		<nav class="flex gap-[5px] sm:gap-[10px] text-[20px] sm:text-[25px] font-bold justify-center w-full items-center h-[100px]">
+
+			<button id="historyBtnClose">Tasks</button>
+			<p>/</p>
+			<button id="historyBtn">History</button>
+
+		</nav>
+
+		<button id="darkLight" class="text-[25px] sm:text-[30px] absolute top-[35px] right-[20px] sm:right-[50px] sm:top-[30px] md:right-[100px]">
+			<i class='bx bxs-moon'></i>
+			<i class='bx bxs-sun hiddens'></i>
+		</button>
+
+	</header>
+
+	<div class="overflow-hidden"></div>
+		<main id="tasksContent">
+			<section id="tasksBody" class="px-[20px] max-w-[1280px] mx-auto py-[50px] ">
+				<div id="showTasks" class="showTasks grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[20px] mx-auto">
+						
+				</div>
+			</section>
+	
+			<form action="" id="newTask" class="px-[15px] py-[20px] fixed inset-0 flex justify-center items-center backdrop-blur-md translate-x-[100%] scale-0 translate-y-[100%] duration-[1s]">
+	
+				<div class="inputContainerBg rounded-lg flex justify-center items-center flex-col gap-[20px]">
+					<div class="relative w-[300px]">
+						<input type="text" id="taskName" placeholder=" " 
+							class="peer w-full border border-gray-300 rounded-lg p-2 pt-5 transition-all duration-300 focus:ring-2 focus:ring-[#FF7F50] focus:border-[#FF7F50] outline-none">
+						
+						<label for="taskName" 
+							class="absolute left-3 top-0 -translate-y-1/2  px-[20px] text-gray-500 text-sm transition-all duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:-translate-y-1/2 peer-focus:top-0 peer-focus:text-sm ">
+							Please enter the task name
+						</label>
+					</div>
+		
+					<div class="relative w-[300px]">
+						<input type="text" id="taskInfo" placeholder=" " 
+							class="peer w-full border border-gray-300 rounded-lg p-2 pt-5 transition-all duration-300 focus:ring-2 focus:ring-[#FF7F50] focus:border-[#FF7F50] outline-none">
+						
+						<label for="taskInfo" 
+							class="absolute left-3 top-0 -translate-y-1/2  px-[20px] text-gray-500 text-sm transition-all duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:-translate-y-1/2 peer-focus:top-0 peer-focus:text-sm ">
+							Please enter the task info
+						</label>
+					</div>
+				
+					<button class="w-[300px]  p-4 rounded-lg bg-[#FF7F50]">Save</button>
+				</div>
+	
+			</form>
+	
+	
+			<button  class="fixed font-bold text-[20px] bottom-[50px] right-[20px] sm:right-[30px] md:right-[85px] duration-[1s] z-30 "  id="addtaskShow">
+				<i class='bx bxs-plus-circle h-[40px] w-[40px] bg-white overflow-hidden text-[50px] md:text-[70px] md:w-[55px] md:h-[55px]'></i>
+			</button>
+		</main>
+
+		<div id="history" class="w-full h-[100vh] absolute top-0 leading-0 scale-[0.9] translate-x-[-100%] duration-[1s] z-[50] ">
+
+
+
+		</div>
+	<script src="main.js"></script>
+</body>
+
+</html>

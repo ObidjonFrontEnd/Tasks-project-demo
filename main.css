@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@300..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+:root{
+	--black:#202124;
+	--white:#ffff;
+	--hover:#FF7F50;
+}
+.darkMode{
+	--black:#ffff;
+	--white:#202124;
+}
+*{
+	color: var(--black) ;
+	font-family: "Roboto", serif;
+}
+body{
+	background: var(--white);
+	position: relative;
+	min-height: 100vh;
+}
+header{
+	background-color: var(--white);
+	nav{
+		button{
+			transition: 0.3s linear;
+			&:hover{
+				color: var(--hover);
+				transition: 0.3s linear;
+			}
+		}
+	}
+	button{
+		i{
+			transition: 0.3s linear;
+		}
+		&:hover i {
+			color: var(--hover);
+			transition: 0.3s linear;	
+		}
+	}
+}
+.hiddens{
+	display: none;
+}
+#addtaskShow {
+	
+	i{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 50%;
+		color: var(--hover);
+	}
+	
+}
+label{
+	background-color: var(--white);
+}
+#newTask{
+	background: var(--white);
+}
+.nujen{
+	background-color: var(--white);
+}
+.task{
+	i{
+		color: Lime;
+	}
+}
+#history{
+	background-color: var(--black);
+}
