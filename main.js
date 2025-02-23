@@ -41,7 +41,7 @@ function showHidden() {
 newTask.addEventListener('submit', function (event) {
 	event.preventDefault()
 	let date = new Date()
-	testTask()
+	testTask(date)
 	showHidden()
 })
 
@@ -54,7 +54,7 @@ function creat() {
 	localStorage.setItem('tasks', JSON.stringify(tasksData))
 	read()
 }
-function testTask() {
+function testTask(date) {
 	count = 0
 	if (taskName.value.trim() == '') {
 		count--
@@ -67,7 +67,7 @@ function testTask() {
 		count++
 	}
 	if (count >= 0) {
-		creat()
+		creat(date)
 	} else {
 		showHidden()
 	}
