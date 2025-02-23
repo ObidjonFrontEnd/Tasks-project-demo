@@ -78,7 +78,7 @@ function testTask() {
 
 //creat function
 ;(function () {
-	tasksData = JSON.parse(localStorage.getItem('tasks'))
+	tasksData = JSON.parse(localStorage.getItem('tasks')) ? JSON.parse(localStorage.getItem('tasks')) : []
 	read()
 })()
 
