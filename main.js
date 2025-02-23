@@ -45,7 +45,7 @@ newTask.addEventListener('submit', function (event) {
 	showHidden()
 })
 
-function creat() {
+function creat(date) {
 	tasksData.push({
 		title: taskName.value,
 		info: taskInfo.value,
