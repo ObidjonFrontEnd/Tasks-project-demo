@@ -4,11 +4,9 @@ let moon = document.querySelector('header button .bxs-moon')
 let sun = document.querySelector('header button .bxs-sun')
 let body = document.querySelector('body')
 
-
 let history = document.getElementById('history')
 let historyBtn = document.getElementById('historyBtn')
 let historyBtnClose = document.getElementById('historyBtnClose')
-
 
 //open and close seclector
 let addtaskShow = document.getElementById('addtaskShow')
@@ -39,8 +37,16 @@ function showHidden() {
 	newTask.classList.toggle('translate-y-[100%]')
 	newTask.classList.toggle('translate-x-[100%]')
 }
+function creat(title, info, date) {
+	tasksData.push({
+		title: title,
+		info: info,
+		date: date,
+	})
 
-//test tasks funtion
+	localStorage.setItem('tasks', JSON.stringify(tasksData))
+	read()
+}
 function testTask(name, info, date) {
 	count = 0
 	if (name.trim() == '') {
@@ -59,20 +65,19 @@ function testTask(name, info, date) {
 		showHidden()
 	}
 }
+newTask.addEventListener('submit', function (event) {
+	event.preventDefault()
+	let date = new Date()
+	testTask(taskName.value, taskInfo.value, date.toLocaleDateString())
+	showHidden()
+})
+
+//test tasks funtion
+
 //creat function
-function creat(title, info, date) {
-	tasksData.push({
-		title: title,
-		info: info,
-		date: date,
-	})
 
-	localStorage.setItem('tasks', JSON.stringify(tasksData))
-	read()
-}
-
-(function(){
-	tasksData = JSON.parse(localStorage.getItem('tasks'));
+;(function () {
+	tasksData = JSON.parse(localStorage.getItem('tasks'))
 	read()
 })()
 
@@ -93,47 +98,33 @@ function read() {
 		`
 		taskName.value = ''
 		taskInfo.value = ''
-		
 	})
 }
 
-newTask.addEventListener('submit', function (event) {
-	event.preventDefault()
-	let date = new Date()
-	testTask(taskName.value, taskInfo.value, date.toLocaleDateString())
-	showHidden()
-})
-
-
-
 //test
-historyBtn.addEventListener('click' , function(){
-	history.classList.remove('translate-x-[-100%]');
-	setTimeout(function() {
-		history.classList.remove('scale-[0.9]');
-	}, 1000); 
-	
+historyBtn.addEventListener('click', function () {
+	history.classList.remove('translate-x-[-100%]')
+	setTimeout(function () {
+		history.classList.remove('scale-[0.9]')
+	}, 1000)
 })
 
-historyBtnClose.addEventListener('click' , function(){
-	history.classList.add('scale-[0.9]');
-	setTimeout(function() {
-		history.classList.add('translate-x-[-100%]');
-	}, 1000); 
-	
+historyBtnClose.addEventListener('click', function () {
+	history.classList.add('scale-[0.9]')
+	setTimeout(function () {
+		history.classList.add('translate-x-[-100%]')
+	}, 1000)
 })
 
-historyBtn.addEventListener('dblclick' , function(){
-	history.classList.remove('translate-x-[-100%]');
-	setTimeout(function() {
-		history.classList.remove('scale-[0.9]');
-	}, 1000); 
-	
+historyBtn.addEventListener('dblclick', function () {
+	history.classList.remove('translate-x-[-100%]')
+	setTimeout(function () {
+		history.classList.remove('scale-[0.9]')
+	}, 1000)
 })
-historyBtnClose.addEventListener('dblclick' , function(){
-	history.classList.add('scale-[0.9]');
-	setTimeout(function() {
-		history.classList.add('translate-x-[-100%]');
-	}, 1000); 
-	
+historyBtnClose.addEventListener('dblclick', function () {
+	history.classList.add('scale-[0.9]')
+	setTimeout(function () {
+		history.classList.add('translate-x-[-100%]')
+	}, 1000)
 })
