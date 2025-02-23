@@ -7,7 +7,7 @@ let body = document.querySelector('body')
 let history = document.getElementById('history')
 let historyBtn = document.getElementById('historyBtn')
 let historyBtnClose = document.getElementById('historyBtnClose')
-
+let showHistory = document.getElementById('showHistory')
 //open and close seclector
 let addtaskShow = document.getElementById('addtaskShow')
 
@@ -16,6 +16,7 @@ let newTask = document.getElementById('newTask') //form
 let taskName = document.getElementById('taskName')
 let taskInfo = document.getElementById('taskInfo')
 
+let historyDate = []
 let tasksData = []
 
 //sector for read
@@ -73,26 +74,27 @@ function testTask(date) {
 	}
 }
 
-
 //test tasks funtion
 
 //creat function
 ;(function () {
-	tasksData = JSON.parse(localStorage.getItem('tasks')) ? JSON.parse(localStorage.getItem('tasks')) : []
+	tasksData = JSON.parse(localStorage.getItem('tasks'))
+		? JSON.parse(localStorage.getItem('tasks'))
+		: []
 	read()
 })()
 
 //read function
 function read() {
 	showTasks.innerHTML = ''
-	tasksData.map(task => {
+	tasksData.map((task, index) => {
 		showTasks.innerHTML += `
 		<div class="task relative bg-[#FF7F50] w-[300px] rounded-[10px]  min-h-[250px] mx-auto overflow-hidden px-[20px] py-[30px] pb-[60px]">
 						
-			<p class = "text-center font-bold text-[20px] w-[200px] mx-auto whitespace-normal">${task.title} .</p>
+			<p class = "text-center font-bold text-[20px] w-[200px] mx-auto whitespace-normal">${task.title}ㅤ</p>
 			<p class =" mx-auto whitespace-normal text-[18px]">${task.info}</p>
 			<p class = 'text-[18px] font-[400] absolute bottom-[20px] '>${task.date}</p>
-			<button onclick="close" class ="absolute text-[30px] bottom-[10px] right-[60px]" ><i class='bx bx-check'></i> <i class='bx bx-check-double'></i></button>
+			<button id = 'closeChek' onclick="closeChek(${index})" class ="absolute text-[30px] bottom-[10px] right-[60px]" ><i class='bx bx-check'></i> </button>
 			<div class="nujen w-[100px] h-[100px]  rotate-[45deg] absolute bottom-[-55px] right-[-55px]"></div>
 						
 		</div>
@@ -129,3 +131,48 @@ historyBtnClose.addEventListener('dblclick', function () {
 		history.classList.add('translate-x-[-100%]')
 	}, 1000)
 })
+let closeChek1 = document.querySelectorAll('#closeChek')
+function closeChek(index) {
+	closeChek1.forEach((obj, indexObj) => {
+		obj.innerHTML = "<i class='bx bx-check-double '></i>"
+		if (index == indexObj) {
+			creatHistory(index)
+			setTimeout(function () {
+				tasksData.splice(index, 1)
+				localStorage.setItem('tasks', JSON.stringify(tasksData))
+				read()
+			}, 1000)
+		}
+	})
+}
+function creatHistory(index) {
+	let data = tasksData.slice(index, index + 1)
+	historyDate.push(data)
+	localStorage.setItem('historyData', JSON.stringify(historyDate))
+	readHistory()
+}
+
+;(function () {
+	historyDate = JSON.parse(localStorage.getItem('historyData'))
+		? JSON.parse(localStorage.getItem('historyData'))
+		: []
+	readHistory()
+})()
+function readHistory() {
+	showHistory.innerHTML = ''
+	historyDate.forEach((value)=>{
+
+		value.map((task) => {
+			showHistory.innerHTML += `
+			<div class="task relative bg-[#FF7F50] w-[300px] rounded-[10px]  min-h-[250px] mx-auto overflow-hidden px-[20px] py-[30px] pb-[60px]">	
+				<p class = "text-center font-bold text-[20px] w-[200px] mx-auto whitespace-normal">${task.title}ㅤ</p>
+				<p class =" mx-auto whitespace-normal text-[18px]">${task.info}</p>
+				<p class = 'text-[18px] font-[400] absolute bottom-[20px] '>${task.date}</p>
+				<button id = 'closeChek' " class ="absolute text-[30px] bottom-[10px] right-[60px]" ><i class='bx bx-check-double '></i></button>
+				<div class="nujen w-[100px] h-[100px]  rotate-[45deg] absolute bottom-[-55px] right-[-55px]"></div>
+							
+			</div>
+			`
+	})
+	})
+}
