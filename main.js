@@ -37,45 +37,46 @@ function showHidden() {
 	newTask.classList.toggle('translate-y-[100%]')
 	newTask.classList.toggle('translate-x-[100%]')
 }
-function creat(title, info, date) {
-	tasksData.push({
-		title: title,
-		info: info,
-		date: date,
-	})
 
+newTask.addEventListener('submit', function (event) {
+	event.preventDefault()
+	let date = new Date()
+	testTask()
+	showHidden()
+})
+
+function creat() {
+	tasksData.push({
+		title: taskName.value,
+		info: taskInfo.value,
+		date: date.toLocaleDateString(),
+	})
 	localStorage.setItem('tasks', JSON.stringify(tasksData))
 	read()
 }
-function testTask(name, info, date) {
+function testTask() {
 	count = 0
-	if (name.trim() == '') {
+	if (taskName.value.trim() == '') {
 		count--
 	} else {
 		count++
 	}
-	if (info.trim() == '') {
+	if (taskInfo.value.trim() == '') {
 		count--
 	} else {
 		count++
 	}
 	if (count >= 0) {
-		creat(name, info, date)
+		creat()
 	} else {
 		showHidden()
 	}
 }
-newTask.addEventListener('submit', function (event) {
-	event.preventDefault()
-	let date = new Date()
-	testTask(taskName.value, taskInfo.value, date.toLocaleDateString())
-	showHidden()
-})
+
 
 //test tasks funtion
 
 //creat function
-
 ;(function () {
 	tasksData = JSON.parse(localStorage.getItem('tasks'))
 	read()
